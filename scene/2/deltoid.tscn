@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvmklt44g86x0"]
+
+[ext_resource type="Script" path="res://scene/2/deltoid.gd" id="1_ujmlo"]
+
+[node name="Deltoid" type="Polygon2D"]
+script = ExtResource("1_ujmlo")

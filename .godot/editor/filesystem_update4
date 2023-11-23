@@ -1,0 +1,10 @@
+res://scene/2/deltoid.tscn
+res://scene/2/deltoid.gd
+res://scene/2/mosaic.tscn
+res://scene/2/junction.tscn
+res://scene/2/junction.gd
+res://scene/0/sketch.tscn
+res://scene/0/sketch.gd
+res://scene/2/mosaic.gd
+res://script/Global.gd
+res://scene/0/game.gd
