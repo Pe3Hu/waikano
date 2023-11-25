@@ -28,6 +28,8 @@ func init_arr() -> void:
 
 func init_num() -> void:
 	num.index = {}
+	num.index.junction = 0
+	num.index.deltoid = 0
 	
 	num.junction = {}
 	num.junction.r = 16
@@ -43,6 +45,11 @@ func init_num() -> void:
 func init_dict() -> void:
 	init_neighbor()
 	init_deltoid()
+	init_junction()
+	
+	dict.direction = {}
+	dict.direction.clockwise = 1
+	dict.direction.counterclockwise = -1
 
 
 func init_neighbor() -> void:
@@ -109,7 +116,9 @@ func init_deltoid() -> void:
 		Vector2(-num.deltoid.d, 0),
 		Vector2(0, num.deltoid.h)
 	]
-	
+
+
+func init_junction() -> void:
 	#sun moon crown butterfly fox hood bouquet
 	dict.junction = {}
 	dict.junction.sun = {}

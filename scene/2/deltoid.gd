@@ -5,13 +5,17 @@ var mosaic = null
 var type = null
 var anchor = 0
 var angle = 0
+var index = null
+var options = {}
 
 
 func set_attributes(input_: Dictionary) -> void:
 	mosaic = input_.mosaic
 	type = input_.type
-	
+	index = Global.num.index.deltoid
+	Global.num.index.deltoid += 1
 	shift_anchor(0)
+	update_color()
 
 
 func init_vertexs() -> void:
@@ -21,6 +25,11 @@ func init_vertexs() -> void:
 		vertexs.append(Vector2(vertex) - Global.dict.deltoid[type].vertexs[anchor])
 	
 	set_polygon(vertexs)
+
+
+func update_color() -> void:
+	var h = float(index) / Global.num.index.deltoid
+	color = Color.from_hsv(h, 0.9, 0.7)
 
 
 func shift_anchor(shift_: int) -> void:
@@ -33,3 +42,7 @@ func shift_anchor(shift_: int) -> void:
 func rotate_around_anchor(angle_: int) -> void:
 	angle = (angle + angle_ * Global.dict.deltoid[type].angles[anchor] + 360) % 360
 	rotation = angle / 180.0 * PI
+
+
+func set_angle(angle_: float) -> void:
+	rotation = angle_ / 180.0 * PI
