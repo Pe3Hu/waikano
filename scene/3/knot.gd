@@ -12,6 +12,8 @@ func set_attributes(input_: Dictionary) -> void:
 	
 	init_vertexs()
 	position = input_.position
+	mosaic.chart.knots[position] = self
+	mosaic.chart.fringes[self] = {}
 
 
 func init_vertexs() -> void:

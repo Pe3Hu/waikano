@@ -15,19 +15,20 @@ func _input(event) -> void:
 		match event.keycode:
 			KEY_SPACE:
 				if event.is_pressed():
-					sketch.mosaic.add_deltoid()
+					sketch.mosaic.add_rhomb()
+					#sketch.mosaic.add_deltoid()
 			KEY_Q:
 				if event.is_pressed(): #&& !event.is_echo():
-					sketch.mosaic.junctions.get_child(0).shift_deltoid(-1)
+					sketch.mosaic.shift_rhomb(-1)
 			KEY_E:
 				if event.is_pressed():
-					sketch.mosaic.junctions.get_child(0).shift_deltoid(1)
-			KEY_A:
-				if event.is_pressed(): 
-					sketch.mosaic.junctions.get_child(0).deltoid.shift_anchor(-1)
-			KEY_D:
-				if event.is_pressed():
-					sketch.mosaic.junctions.get_child(0).deltoid.shift_anchor(1)
+					sketch.mosaic.shift_rhomb(1)
+#			KEY_A:
+#				if event.is_pressed(): 
+#					sketch.mosaic.junctions.get_child(0).deltoid.shift_anchor(-1)
+#			KEY_D:
+#				if event.is_pressed():
+#					sketch.mosaic.junctions.get_child(0).deltoid.shift_anchor(1)
 
 
 func _process(delta_) -> void:

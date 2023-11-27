@@ -60,6 +60,7 @@ func init_dict() -> void:
 	init_deltoid()
 	init_junction()
 	init_rhomb()
+	init_fringe()
 	
 	dict.direction = {}
 	dict.direction.clockwise = 1
@@ -163,6 +164,15 @@ func init_rhomb() -> void:
 	dict.rhomb.skinny = [0, 1, 2, 3]
 	dict.rhomb.fatty = [2, 1, 3, 0]
 
+
+func init_fringe() -> void:
+	dict.fringe = {}
+	dict.fringe.pair = {}
+	dict.fringe.pair[0] = 3
+	dict.fringe.pair[1] = 2
+	dict.fringe.pair[2] = 1
+	dict.fringe.pair[3] = 0
+
 func init_emptyjson() -> void:
 	dict.emptyjson = {}
 	dict.emptyjson.title = {}
@@ -224,6 +234,12 @@ func init_color():
 	color.fringe[1] = Color.from_hsv(120 / h, 0.9, 0.7)
 	color.fringe[2] = Color.from_hsv(210 / h, 0.9, 0.7)
 	color.fringe[3] = Color.from_hsv(0 / h, 0.9, 0.7)
+	
+	color.rhomb = {}
+	color.rhomb[0] = Color.from_hsv(90 / h, 0.9, 0.7)
+	color.rhomb[1] = Color.from_hsv(240 / h, 0.9, 0.7)
+	color.rhomb[2] = Color.from_hsv(300 / h, 0.9, 0.7)
+	color.rhomb[3] = Color.from_hsv(30 / h, 0.9, 0.7)
 
 
 func save(path_: String, data_: String):

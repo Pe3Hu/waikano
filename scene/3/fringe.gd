@@ -17,5 +17,7 @@ func set_attributes(input_: Dictionary) -> void:
 	for knot in knots:
 		add_point(knot.position)
 	
+	mosaic.chart.fringes[knots[0]][knots[1]] = self
+	mosaic.chart.fringes[knots[1]][knots[0]] = self
 	default_color = Global.color.fringe[type]
 	mosaic.connections[type].append(self)
