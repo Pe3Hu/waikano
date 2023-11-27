@@ -5,3 +5,12 @@ res://scene/0/sketch.tscn
 res://scene/2/junction.gd
 res://scene/2/deltoid.gd
 res://scene/mosaic.tscn
+res://scene/3/rhomb.tscn
+res://scene/3/rhomb.gd
+res://scene/3/fringe.tscn
+res://script/Global.gd
+res://scene/3/knot.tscn
+res://scene/1/mosaic.tscn
+res://scene/1/mosaic.gd
+res://scene/3/knot.gd
+res://scene/3/fringe.gd

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b258pubsdhcfj"]
+
+[ext_resource type="Script" path="res://scene/1/mosaic.gd" id="1_epter"]
+
+[node name="Mosaic" type="Node2D"]
+script = ExtResource("1_epter")
+
+[node name="Deltoids" type="Node2D" parent="."]
+
+[node name="Junctions" type="Node2D" parent="."]
+
+[node name="Rhombs" type="Node2D" parent="."]
+
+[node name="Fringes" type="Node2D" parent="."]
+
+[node name="Knots" type="Node2D" parent="."]

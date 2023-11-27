@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dagcajwmfiuci"]
+
+[ext_resource type="Script" path="res://scene/3/knot.gd" id="1_37cc4"]
+
+[node name="Knot" type="Polygon2D"]
+script = ExtResource("1_37cc4")

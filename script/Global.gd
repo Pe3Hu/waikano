@@ -30,6 +30,9 @@ func init_num() -> void:
 	num.index = {}
 	num.index.junction = 0
 	num.index.deltoid = 0
+	num.index.rhomb = 0
+	num.index.fringe = 0
+	num.index.knot = 0
 	
 	num.junction = {}
 	num.junction.r = 16
@@ -39,13 +42,24 @@ func init_num() -> void:
 	num.deltoid.c = num.deltoid.a * cos(PI/5)
 	num.deltoid.h = num.deltoid.a * sin(PI/5)
 	num.deltoid.d = num.deltoid.a - num.deltoid.c
-	#num.deltoid.b = num.deltoid.d / cos(PI/5 * 2)
+	
+	num.knot = {}
+	num.knot.r = 8
+	
+	num.fringe = {}
+	num.fringe.a = 100
+	
+	num.rhomb = {}
+	num.rhomb.angle = {}
+	num.rhomb.angle.skinny = 144
+	num.rhomb.angle.fatty = 108
 
 
 func init_dict() -> void:
 	init_neighbor()
 	init_deltoid()
 	init_junction()
+	init_rhomb()
 	
 	dict.direction = {}
 	dict.direction.clockwise = 1
@@ -144,6 +158,11 @@ func init_junction() -> void:
 	dict.junction.bouquet.anchor = [0, 1, 3]
 
 
+func init_rhomb() -> void:
+	dict.rhomb = {}
+	dict.rhomb.skinny = [0, 1, 2, 3]
+	dict.rhomb.fatty = [2, 1, 3, 0]
+
 func init_emptyjson() -> void:
 	dict.emptyjson = {}
 	dict.emptyjson.title = {}
@@ -168,6 +187,12 @@ func init_node() -> void:
 func init_scene() -> void:
 	scene.junction = load("res://scene/2/junction.tscn")
 	scene.deltoid = load("res://scene/2/deltoid.tscn")
+	
+	scene.rhomb = load("res://scene/3/rhomb.tscn")
+	scene.fringe = load("res://scene/3/fringe.tscn")
+	scene.knot = load("res://scene/3/knot.tscn")
+	
+	
 	pass
 
 
@@ -193,16 +218,12 @@ func init_window_size():
 
 func init_color():
 	var h = 360.0
-	color.indicator = {}
-	color.indicator.health = {}
-	color.indicator.health.fill = Color.from_hsv(0, 1, 0.9)
-	color.indicator.health.background = Color.from_hsv(0, 0.25, 0.9)
-	color.indicator.endurance = {}
-	color.indicator.endurance.fill = Color.from_hsv(0.33, 1, 0.9)
-	color.indicator.endurance.background = Color.from_hsv(0.33, 0.25, 0.9)
-	color.indicator.barrier = {}
-	color.indicator.barrier.fill = Color.from_hsv(0.5, 1, 0.9)
-	color.indicator.barrier.background = Color.from_hsv(0.5, 0.25, 0.9)
+	
+	color.fringe = {}
+	color.fringe[0] = Color.from_hsv(60 / h, 0.9, 0.7)
+	color.fringe[1] = Color.from_hsv(120 / h, 0.9, 0.7)
+	color.fringe[2] = Color.from_hsv(210 / h, 0.9, 0.7)
+	color.fringe[3] = Color.from_hsv(0 / h, 0.9, 0.7)
 
 
 func save(path_: String, data_: String):

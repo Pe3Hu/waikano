@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b01hnvutwxjc8"]
+
+[ext_resource type="Script" path="res://scene/3/fringe.gd" id="1_kyb82"]
+
+[node name="Fringe" type="Line2D"]
+width = 5.0
+script = ExtResource("1_kyb82")
