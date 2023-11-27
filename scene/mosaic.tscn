@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://b258pubsdhcfj"]
 
-[ext_resource type="Script" path="res://scene/2/mosaic.gd" id="1_gldvj"]
+[ext_resource type="Script" path="res://scene/mosaic.gd" id="1_q33ui"]
 
 [node name="Mosaic" type="Node2D"]
-script = ExtResource("1_gldvj")
+script = ExtResource("1_q33ui")
 
 [node name="Deltoids" type="Node2D" parent="."]
 

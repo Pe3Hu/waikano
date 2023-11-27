@@ -1,9 +1,7 @@
 res://scene/2/deltoid.tscn
-res://script/Global.gd
 res://scene/2/mosaic.tscn
 res://scene/2/junction.tscn
 res://scene/0/sketch.tscn
 res://scene/2/junction.gd
-res://scene/2/mosaic.gd
 res://scene/2/deltoid.gd
-res://scene/0/game.gd
+res://scene/mosaic.tscn

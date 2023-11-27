@@ -45,4 +45,11 @@ func rotate_around_anchor(angle_: int) -> void:
 
 
 func set_angle(angle_: float) -> void:
+	angle = angle_
 	rotation = angle_ / 180.0 * PI
+
+
+func set_anchor(anchor_: int) -> void:
+	anchor = anchor_
+	angle = 0
+	init_vertexs()

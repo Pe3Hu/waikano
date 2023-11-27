@@ -17,8 +17,7 @@ func set_attributes(input_: Dictionary) -> void:
 	
 	for direction in Global.dict.direction:
 		angle.directions[direction] = 0
-		contenders[direction] = []
-		
+	
 	angle.options = {}
 
 
@@ -61,22 +60,34 @@ func shift_deltoid(value_: int) -> void:
 	
 	var n = 0
 	
-	for direction in Global.dict.direction:
-		n += deltoid.options[direction].size()
+	for direction in contenders[deltoid.type]:
+		n += contenders[deltoid.type][direction].size()
 	
 	order = (order + value_ + n) % n
 	
 	var _order = order
 	var direction = "clockwise"
 	
-	if order >= deltoid.options.clockwise.size():
+	if order >= contenders[deltoid.type].clockwise.size():
 		direction = "counterclockwise"
-		_order -= deltoid.options.clockwise.size()
+		_order -= contenders[deltoid.type].clockwise.size()
 	
-	var _anchor = deltoid.options[direction][_order]
-	var _angle = angle.directions[direction] + Global.dict.deltoid[deltoid.type].angles[deltoid.anchor] / 2 * Global.dict.direction[direction]
-	deltoid.set_angle(_angle)
+	var _anchor = contenders[deltoid.type][direction][_order]
+	var shift = Global.dict.deltoid[deltoid.type].angles[_anchor] * Global.dict.direction[direction] / 2
+	var _angle = angle.directions[direction]
+	
+	match _anchor:
+		0:
+			_angle += shift
+		1:
+			_angle += 180 - shift * 2
+		2:
+			_angle += 180 + shift * 1.75
+		3:
+			_angle += 180 - shift * 2
+	
 	deltoid.set_anchor(_anchor)
+	deltoid.set_angle(_angle)
 
 
 func fix_deltoid() -> void:
@@ -89,8 +100,8 @@ func fix_deltoid() -> void:
 			for _direction in angle.directions:
 				angle.directions[_direction] += Global.dict.deltoid[deltoid.type].angles[deltoid.anchor] / 2 * Global.dict.direction[_direction]
 		else:
-			angle.directions[direction] += Global.dict.deltoid[deltoid.type].angles[deltoid.anchor] / 2 * Global.dict.direction[direction]
-			deltoid.set_angle(angle.directions[direction])
+			angle.directions[direction] += Global.dict.deltoid[deltoid.type].angles[deltoid.anchor] * Global.dict.direction[direction]
+			#deltoid.set_angle(angle.directions[direction])
 			
 			match direction:
 				"clockwise":
@@ -105,22 +116,22 @@ func fix_deltoid() -> void:
 
 
 func update_contenders() -> void:
+	for type in Global.dict.deltoid:
+		contenders[type] = {}
+		
+		for direction in Global.dict.direction:
+			contenders[type][direction] = []
+	
 	for type in Global.dict.junction:
 		get_contenders_based_on_junction_type(type)
 	
+	print([deltoid.type, deltoid.anchor])
 	print(contenders)
 
 
 func get_contenders_based_on_junction_type(type_: String) -> void:
-	for direction in Global.dict.direction:
-		contenders[direction] = []
-	
 	var types = Global.dict.junction[type_].deltoid
 	var anchors = Global.dict.junction[type_].anchor
-	print([types], [anchors])
-	
-	for _deltoid in deltoids:
-		print([_deltoid.type, _deltoid.anchor])
 	
 	for _i in types.size():
 		var flag = true
@@ -146,19 +157,16 @@ func get_contenders_based_on_junction_type(type_: String) -> void:
 					"counterclockwise":
 						_index = (_i + types.size() - 1) % types.size()
 				
-				var data = {}
-				data.type = types[_index]
-				data.anchor = anchors[_index]
-				contenders[direction].append(data)
+				if !contenders[types[_index]][direction].has(anchors[_index]):
+					contenders[types[_index]][direction].append(anchors[_index])
 
 
 func check_direction(direction_: String) -> void:
 	var flag = true
 	
 	if !deltoids.is_empty():
-		for data in contenders[direction_]:
-			if data.type == deltoid.type:
-				deltoid.options[direction_].append(data.anchor)
+		for anchor in contenders[deltoid.type][direction_]:
+			deltoid.options[direction_].append(anchor)
 	
 	if !deltoid.options[direction_].is_empty():
 		angle.options[direction_] = angle.directions[direction_]
