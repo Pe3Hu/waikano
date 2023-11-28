@@ -24,10 +24,10 @@ func set_attributes(input_: Dictionary) -> void:
 func init_vertexs() -> void:
 	var n = 4
 	var vertexs = []
-	var angle = PI * 2 / n
+	var _angle = PI * 2 / n
 	
 	for _i in n:
-		var vertex = Vector2.from_angle(angle * _i) * Global.num.junction.r
+		var vertex = Vector2.from_angle(_angle * _i) * Global.num.junction.r
 		vertexs.append(vertex)
 	
 	set_polygon(vertexs)
@@ -162,7 +162,7 @@ func get_contenders_based_on_junction_type(type_: String) -> void:
 
 
 func check_direction(direction_: String) -> void:
-	var flag = true
+	#var flag = true
 	
 	if !deltoids.is_empty():
 		for anchor in contenders[deltoid.type][direction_]:

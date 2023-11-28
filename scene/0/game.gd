@@ -15,7 +15,9 @@ func _input(event) -> void:
 		match event.keycode:
 			KEY_SPACE:
 				if event.is_pressed():
-					sketch.mosaic.add_rhomb()
+					var input = {}
+					input.type = Global.dict.rhomb.keys()[Global.num.index.rhomb % 2]
+					sketch.mosaic.add_rhomb(input)
 					#sketch.mosaic.add_deltoid()
 			KEY_Q:
 				if event.is_pressed(): #&& !event.is_echo():

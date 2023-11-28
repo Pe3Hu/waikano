@@ -58,11 +58,11 @@ func init_rhombs() -> void:
 	for type in Global.color.fringe:
 		connections[type] = []
 	
-	
 	var input = {}
 	input.type = Global.dict.rhomb.keys()[Global.num.index.rhomb % 2]
 	add_rhomb(input)
 	rhomb.lock()
+	#input.type = Global.dict.rhomb.keys()[Global.num.index.rhomb % 2]
 	add_rhomb(input)
 	rhomb.lock()
 	
@@ -70,23 +70,24 @@ func init_rhombs() -> void:
 
 
 func shift_rhomb(value_: int) -> void:
-	var n = connections[shift.type].size()
-	shift.order += value_
-	
-	while shift.order >= n:
-		n = Global.color.fringe.keys().size()
-		shift.type = (shift.type + 1) % n
-		shift.order -= n
-		n = connections[shift.type].size()
-	
-	while shift.order < 0:
-		n = Global.color.fringe.keys().size()
-		shift.type = (shift.type - 1 + n) % n
-		n = connections[shift.type].size()
-		shift.order += n
-	
-	var connection = connections[shift.type][shift.order]
-	rhomb.set_connection(connection)
+	if rhomb != null:
+		var n = connections[shift.type].size()
+		shift.order += value_
+		
+		while shift.order >= n:
+			shift.order -= n
+			n = Global.color.fringe.keys().size()
+			shift.type = (shift.type + 1) % n
+			n = connections[shift.type].size()
+		
+		while shift.order < 0:
+			n = Global.color.fringe.keys().size()
+			shift.type = (shift.type - 1 + n) % n
+			n = connections[shift.type].size()
+			shift.order += n
+		
+		var connection = connections[shift.type][shift.order]
+		rhomb.set_connection(connection)
 
 
 func add_rhomb(input_: Dictionary) -> void:
